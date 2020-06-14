@@ -1,0 +1,32 @@
+// Copyright 2020 Ramsay Carslaw
+
+#include "../include/runtime.h"
+
+
+void runtime_start(Runtime *runtime, ByteBuffer *code) {
+  runtime->sp = -1;
+  runtime->pc = 0;
+  runtime->running = true;
+
+  while (runtime->running) {
+    
+  }
+}
+
+void push8(Runtime *r, uint8_t data) {
+  r->stack[++r->sp] = data;
+}
+
+void push16(Runtime *r, uint16_t data) {
+  push8(r, (data & 0xFF00) >> 8);
+  push8(r, (data & 0x00FF));
+}
+
+void push32(Runtime *r, uint32_t data) {
+  push8(r, (data & 0xFF000000) >> 24);
+  push8(r, (data & 0x00FF0000) >> 16);
+  push8(r, (data & 0x0000FF00) >> 8);
+  push8(r, (data & 0x000000FF));
+}
+
+
