@@ -17,6 +17,8 @@ ParserStatus parser_start(TokenList *list, const char * source) {
 
     lex[lexi] = '\0';
 
+    Token token;
+
     //TODO care about empty lines
     //TODO care about tabs
 
@@ -24,7 +26,8 @@ ParserStatus parser_start(TokenList *list, const char * source) {
     if (lex[0] == '#') {
       int num = parser_get_number(lex);
       //printf("Number: %d\n", num);
-      token_list_add(list, token_create(NUMBER, num, line));
+      token_create(&token, NUMBER, num, line);
+      token_list_add(list, token);
     }
 
     // Must be an instruction
@@ -32,7 +35,8 @@ ParserStatus parser_start(TokenList *list, const char * source) {
       int inst = parser_get_inst(lex);
       if (inst >= 0) {
           //printf("Instruction: %s\n", lex);
-          token_list_add(list, token_create(INST, inst, line));
+          token_create(&token, INST, inst, line);
+          token_list_add(list, token);
         } else {
             printf("ERROR: no such instruction %s at %d\n", lex, line);
             return PARSER_SYNTAX_ERROR;

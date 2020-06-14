@@ -1,0 +1,5 @@
+push #100
+push #80
+add
+push #40
+hlt
