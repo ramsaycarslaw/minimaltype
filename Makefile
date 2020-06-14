@@ -8,6 +8,9 @@ EXEC = mtc
 
 all: $(SRC) $(OBJ) $(EXEC)
 
+debug: all
+debug: CFLAGS += -DEBUG
+
 $(EXEC): $(OBJ)
 	$(CC) $(LDFLAGS) $^ -o $@
 

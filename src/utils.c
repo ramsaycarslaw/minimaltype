@@ -25,3 +25,15 @@ char *read_file(const char* filename) {
 
   return buf;
 }
+
+void write_binary_file(const char * path, ByteBuffer* bb) {
+  FILE* file = fopen(path, "wb");
+
+  if (!file) {
+    printf("ERROR: could not write to binary file %s...\n", path);
+    return;
+  }
+
+  fwrite(bb->buffer, 1, bb->ptr, file);
+  fclose(file);
+}
