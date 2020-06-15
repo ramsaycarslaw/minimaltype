@@ -69,7 +69,7 @@ uint32_t pop32(Runtime *r) {
   uint8_t c = pop8(r);
   uint8_t b = pop8(r);
   uint8_t a = pop8(r);
-  return (d << 24) | (c << 16) | (b << 8) | a;
+  return (a << 24) | (b << 16) | (c << 8) | d;
 }
 
 
